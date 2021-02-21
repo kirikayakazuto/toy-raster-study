@@ -4,6 +4,7 @@ const vector2_1 = require("../core/math/vector2");
 const vector4_1 = require("../core/math/vector4");
 const color_1 = require("../core/shading/color");
 const shader_1 = require("../core/shading/shader");
+const texture_1 = require("../core/shading/texture");
 class DrawTriangle {
     constructor(renderer) {
         this.cameraPos = new vector4_1.Vector4(0, 0, 2.5, 1);
@@ -14,6 +15,7 @@ class DrawTriangle {
     init() {
         this.setCamera();
         this.renderer.setBackgroundColor(color_1.Color.GRAY);
+        this.texture = texture_1.default.createTextureFromFile("container2.png");
         let shader = new shader_1.default({
             vertexShading: this.vertexShading.bind(this),
             fragmentShading: this.fragmentShading.bind(this)
@@ -53,7 +55,8 @@ class DrawTriangle {
         return vertex.context.posProject;
     }
     fragmentShading(input) {
-        return input.color;
+        let tex = this.texture.sample(input.varyingVec2Dict[shader_1.ShaderVarying.UV]);
+        return color_1.Color.multiplyColor(tex, input.color, tex);
     }
 }
 exports.default = DrawTriangle;

@@ -12,7 +12,6 @@ export default class DrawTriangle implements IExample {
 
     
     protected renderer:Raster;
-
     protected texture:Texture;
 
     private cameraPos = new Vector4(0, 0, 2.5, 1);
@@ -26,6 +25,8 @@ export default class DrawTriangle implements IExample {
     private init() {
         this.setCamera();
         this.renderer.setBackgroundColor(Color.GRAY);
+
+        this.texture = Texture.createTextureFromFile("container2.png");
 
         let shader = new Shader({
             vertexShading: this.vertexShading.bind(this),
@@ -74,7 +75,8 @@ export default class DrawTriangle implements IExample {
         return vertex.context.posProject;
     }
     private fragmentShading(input: FragmentInput) {
-        return input.color;
+        let tex = this.texture.sample(input.varyingVec2Dict[ShaderVarying.UV]);
+        return Color.multiplyColor(tex, input.color, tex);
     }
 
 }
