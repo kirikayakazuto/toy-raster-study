@@ -1,0 +1,19 @@
+{
+  "name": "raster-toy",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "description": "raster-toy",
+  "author": "laomoi",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "tsc": "^1.20150623.0",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "electron": "^11.1.0",
+    "image-decode": "^1.2.2"
+  }
+}
