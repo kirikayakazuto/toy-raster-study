@@ -2,6 +2,7 @@ import { WebGLBlitter } from "./web/webgl-blitter"
 import Raster from "./core/raster"
 import DrawBox from "./examples/draw-box"
 import DrawMesh from "./examples/draw-mesh"
+import DrawTriangle from "./examples/draw-triangle"
 
 
 export interface IExample {
@@ -32,7 +33,8 @@ export default class App {
         this.renderer = new Raster(this.width, this.height, true)
         this.blitter = new WebGLBlitter(this.gl)
         // this.example = new DrawBox(this.renderer)
-        this.example = new DrawMesh(this.renderer)
+        // this.example = new DrawMesh(this.renderer)
+        this.example = new DrawTriangle(this.renderer);
 
 
         let then = 0

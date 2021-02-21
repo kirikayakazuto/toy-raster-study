@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const webgl_blitter_1 = require("./web/webgl-blitter");
 const raster_1 = require("./core/raster");
-const draw_mesh_1 = require("./examples/draw-mesh");
+const draw_triangle_1 = require("./examples/draw-triangle");
 class App {
     constructor() {
         this.showFPSCallback = null;
@@ -16,7 +16,7 @@ class App {
     run() {
         this.renderer = new raster_1.default(this.width, this.height, true);
         this.blitter = new webgl_blitter_1.WebGLBlitter(this.gl);
-        this.example = new draw_mesh_1.default(this.renderer);
+        this.example = new draw_triangle_1.default(this.renderer);
         let then = 0;
         let lastShowFPS = 0;
         let loopWrap = (now) => {
