@@ -214,7 +214,7 @@ export default class Raster {
                 let rhw = MathUtils.getInterpValue3(v0.context.rhw, v1.context.rhw, v2.context.rhw, barycentric[0], barycentric[1], barycentric[2]) //1/z
                 if (this.buffer.ztest(x, y, rhw, i)) {
                     testResults.push({
-                            barycentric: barycentric, 
+                            barycentric: barycentric,
                             index:i, 
                             x: x, 
                             y: y, 

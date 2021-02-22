@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const math_utils_1 = require("../core/math/math-utils");
 const vector2_1 = require("../core/math/vector2");
 const vector4_1 = require("../core/math/vector4");
 const color_1 = require("../core/shading/color");
@@ -16,6 +17,7 @@ class DrawTriangle {
         this.setCamera();
         this.renderer.setBackgroundColor(color_1.Color.GRAY);
         this.texture = texture_1.default.createTextureFromFile("container2.png");
+        this.textureSpecular = texture_1.default.createTextureFromFile("container2_specular.png");
         let shader = new shader_1.default({
             vertexShading: this.vertexShading.bind(this),
             fragmentShading: this.fragmentShading.bind(this)
@@ -45,9 +47,19 @@ class DrawTriangle {
                 posModel: new vector4_1.Vector4(1, 1, 1),
                 color: color_1.Color.WHITE,
                 uv: new vector2_1.Vector2(1, 1)
+            },
+            {
+                posModel: new vector4_1.Vector4(-1, 1, 1),
+                color: color_1.Color.WHITE,
+                uv: new vector2_1.Vector2(0, 1)
             }
         ];
-        this.renderer.drawTriangle(vertexs);
+        this.renderer.drawTriangle([
+            vertexs[0], vertexs[1], vertexs[2]
+        ]);
+        this.renderer.drawTriangle([
+            vertexs[0], vertexs[2], vertexs[3]
+        ]);
     }
     vertexShading(vertex, input) {
         vertex.posModel.transform(input.viewProject, vertex.context.posProject);
@@ -57,6 +69,10 @@ class DrawTriangle {
     fragmentShading(input) {
         let tex = this.texture.sample(input.varyingVec2Dict[shader_1.ShaderVarying.UV]);
         return color_1.Color.multiplyColor(tex, input.color, tex);
+    }
+    onWheel(delta) {
+        this.fovy = math_utils_1.default.clamp(this.fovy + (delta > 0 ? 0.05 : -0.05), Math.PI / 6, Math.PI * 2 / 3);
+        this.setCamera();
     }
 }
 exports.default = DrawTriangle;

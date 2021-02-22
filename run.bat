@@ -1,1 +1,1 @@
-./node_modules/.bin/electron  ./
+electron  ./

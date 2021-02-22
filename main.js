@@ -18,14 +18,15 @@ function createWindow() {
 
     // Create the browser window.
 	mainWindow = new BrowserWindow({
-        width: 1500,
-        height: 900,
+        width: 960,
+        height: 420,
         webPreferences: {
             nodeIntegration: true,
             webgl: true,
             webSecurity: false,
         }
-    })
+    });
+    mainWindow.webContents.openDevTools();
 
 
     // and load the index.html of the app.
