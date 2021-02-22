@@ -47,6 +47,13 @@ class Color {
         this.b = math_utils_1.default.clamp(this.b, min, max);
         this.a = math_utils_1.default.clamp(this.a, min, max);
     }
+    normalize() {
+        this.r /= 255;
+        this.g /= 255;
+        this.b /= 255;
+        this.a /= 255;
+        return this;
+    }
     static getInterpColor(color1, color2, color3, a, b, c, dstColor) {
         dstColor.r = math_utils_1.default.getInterpValue3(color1.r, color2.r, color3.r, a, b, c);
         dstColor.g = math_utils_1.default.getInterpValue3(color1.g, color2.g, color3.g, a, b, c);
@@ -59,7 +66,8 @@ class Color {
         dstColor.b = math_utils_1.default.getInterpValue4(c1.b, c2.b, c3.b, c4.b, w1, w2, w3, w4);
         dstColor.a = math_utils_1.default.getInterpValue4(c1.a, c2.a, c3.a, c4.a, w1, w2, w3, w4);
     }
-    static multiplyColor(color1, color2, dst) {
+    static multiplyColor(color1, color2) {
+        let dst = new Color();
         dst.r = color1.r * color2.r / 255;
         dst.g = color1.g * color2.g / 255;
         dst.b = color1.b * color2.b / 255;

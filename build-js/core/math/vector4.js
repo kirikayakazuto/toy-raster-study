@@ -57,6 +57,15 @@ class Vector4 {
         dst.w = 1.0;
         return dst;
     }
+    mul(val, dst = null) {
+        if (dst == null) {
+            dst = new Vector4();
+        }
+        dst.x = this.x * val;
+        dst.y = this.y * val;
+        dst.z = this.z * val;
+        return dst;
+    }
     normalize(dst = null) {
         if (dst == null) {
             dst = new Vector4();

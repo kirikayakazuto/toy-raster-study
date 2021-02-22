@@ -37,7 +37,7 @@ class DrawBox {
             },
             fragmentShading: function (input) {
                 let tex = texture.sample(input.varyingVec2Dict[shader_1.ShaderVarying.UV]);
-                return color_1.Color.multiplyColor(tex, input.color, tex);
+                return color_1.Color.multiplyColor(tex, input.color);
             }
         });
         this.renderer.setShader(shader);

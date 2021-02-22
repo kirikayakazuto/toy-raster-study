@@ -49,7 +49,7 @@ export default class DrawBox implements IExample{
                 },
                 fragmentShading: function(input:FragmentInput):Color {
                     let tex = texture.sample(input.varyingVec2Dict[ShaderVarying.UV])
-                    return Color.multiplyColor(tex, input.color, tex)
+                    return Color.multiplyColor(tex, input.color)
                 }
             }
         )

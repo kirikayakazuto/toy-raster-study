@@ -66,6 +66,17 @@ export class Vector4{
         return dst
     }
 
+    public mul(val: number, dst: Vector4 = null) {
+        if (dst == null){
+            dst = new Vector4();
+        }
+        dst.x = this.x * val;
+        dst.y = this.y * val;
+        dst.z = this.z * val;
+        //dst.x = this.w *= val;
+        return dst;
+    }
+
     public normalize(dst:Vector4=null):Vector4{
         if (dst == null){
             dst = new Vector4()

@@ -65,6 +65,14 @@ export class Color {
         this.a = MathUtils.clamp(this.a, min, max)
     }
 
+    public normalize() {
+        this.r /= 255;
+        this.g /= 255;
+        this.b /= 255;
+        this.a /= 255;
+        return this;
+    }
+
     public static getInterpColor(color1:Color, color2:Color, color3:Color, a:number, b:number, c:number, dstColor:Color) {
         dstColor.r = MathUtils.getInterpValue3(color1.r, color2.r, color3.r, a, b, c)
         dstColor.g = MathUtils.getInterpValue3(color1.g, color2.g, color3.g, a, b, c)
@@ -79,7 +87,11 @@ export class Color {
         dstColor.a = MathUtils.getInterpValue4(c1.a, c2.a, c3.a, c4.a, w1, w2, w3, w4)
     }
 
-    public static multiplyColor(color1:Color, color2:Color, dst:Color){
+    
+
+    public static multiplyColor(color1:Color, color2:Color){
+        let dst = new Color();
+        
         dst.r = color1.r * color2.r / 255
         dst.g = color1.g * color2.g / 255
         dst.b = color1.b * color2.b / 255
