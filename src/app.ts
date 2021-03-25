@@ -1,7 +1,5 @@
 import { WebGLBlitter } from "./web/webgl-blitter"
 import Raster from "./core/raster"
-import DrawBox from "./examples/draw-box"
-import DrawMesh from "./examples/draw-mesh"
 import DrawTriangle from "./examples/draw-triangle"
 
 
